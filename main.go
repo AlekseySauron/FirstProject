@@ -1,23 +1,25 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"myFirstGoApp/pkg/mod2"
-
+	"io/ioutil"
+	"net/http"
 	// "io"
 	// "net/http"
 	// "os"
-	myFirstModule "github.com/AlekseySauron/myFirstModule"
 	//"rsc.io/quote"
 )
 
 func main() {
-	fmt.Println("Hello, World!")
+	/*
+		fmt.Println("Hello, World!")
 
-	res := myFirstModule.Hi("ввв")
-	fmt.Println(res)
+		res := myFirstModule.Hi("ввв")
+		fmt.Println(res)
 
-	mod2.Hi("вывывы")
+		mod2.Hi("вывывы")
+	*/
 
 	//logrus
 
@@ -27,30 +29,47 @@ func main() {
 	// fmt.Printf(message)
 
 	//return
-	/*
-		fmt.Println("dsds")
 
-		resp, err := http.Get("https://jsonplaceholder.typicode.com/todos/1")
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		defer resp.Body.Close()
+	//fmt.Println("START")
 
-		io.Copy(os.Stdout, resp.Body)
-	*/
+	resp, err := http.Get("https://jsonplaceholder.typicode.com/todos/1")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer resp.Body.Close()
 
 	/*
-	   for true {
+		fmt.Println("1 вариант")
 
-	       bs := make([]byte, 1014)
-	       n, err := resp.Body.Read(bs)
-	       fmt.Println(string(bs[:n]))
+		var result1 map[string]interface{}
 
-	       if n == 0 || err != nil{
-	           break
-	       }
-	   }
+		json.NewDecoder(resp.Body).Decode(&result1)
+
+		fmt.Printf("userId = %v \n", result1["userId"])
+		fmt.Printf("Id = %v \n", result1["id"])
+		fmt.Printf("title = %v \n", result1["title"])
+		fmt.Printf("completed = %v \n", result1["completed"])
 	*/
+
+	fmt.Println("2 вариант")
+	data, err := ioutil.ReadAll(resp.Body)
+
+	type StructResult struct {
+		userId    int
+		id        int
+		title     string
+		completed bool
+	}
+
+	var result2 StructResult
+	json.Unmarshal(data, &result2)
+
+	fmt.Println("Struct is:", result2)
+
+	fmt.Printf("userId = %v \n", result2.userId)
+	fmt.Printf("Id = %v \n", result2.id)
+	fmt.Printf("title = %v \n", result2.title)
+	fmt.Printf("completed = %v \n", result2.completed)
 
 }
