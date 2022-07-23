@@ -1,10 +1,7 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
-	"net/http"
+	"myFirstGoApp/pkg/mod2"
 	// "io"
 	// "net/http"
 	// "os"
@@ -15,61 +12,47 @@ func main() {
 	/*
 		fmt.Println("Hello, World!")
 
-		res := myFirstModule.Hi("ввв")
-		fmt.Println(res)
-
 		mod2.Hi("вывывы")
 	*/
 
-	//logrus
+	// resp, err := http.Get("https://jsonplaceholder.typicode.com/todos/1")
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// defer resp.Body.Close()
 
-	//fmt.Println(testmod.Hi("roberto"))
+	// fmt.Println("1 вариант")
 
-	// message := quote.Hello()
-	// fmt.Printf(message)
+	// var result1 map[string]interface{}
 
-	//return
+	// json.NewDecoder(resp.Body).Decode(&result1)
 
-	//fmt.Println("START")
+	// fmt.Printf("userId = %v \n", result1["userId"])
+	// fmt.Printf("Id = %v \n", result1["id"])
+	// fmt.Printf("title = %v \n", result1["title"])
+	// fmt.Printf("completed = %v \n", result1["completed"])
+	mod2.Print1("https://jsonplaceholder.typicode.com/todos/1")
 
-	resp, err := http.Get("https://jsonplaceholder.typicode.com/todos/1")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	defer resp.Body.Close()
+	// fmt.Println("2 вариант")
+	// data, err := ioutil.ReadAll(resp.Body)
 
-	/*
-		fmt.Println("1 вариант")
+	// type StructResult struct {
+	// 	userId    int
+	// 	id        int
+	// 	title     string
+	// 	completed bool
+	// }
 
-		var result1 map[string]interface{}
+	// var result2 StructResult
+	// json.Unmarshal(data, &result2)
 
-		json.NewDecoder(resp.Body).Decode(&result1)
+	// fmt.Println("Struct is:", result2)
 
-		fmt.Printf("userId = %v \n", result1["userId"])
-		fmt.Printf("Id = %v \n", result1["id"])
-		fmt.Printf("title = %v \n", result1["title"])
-		fmt.Printf("completed = %v \n", result1["completed"])
-	*/
-
-	fmt.Println("2 вариант")
-	data, err := ioutil.ReadAll(resp.Body)
-
-	type StructResult struct {
-		userId    int
-		id        int
-		title     string
-		completed bool
-	}
-
-	var result2 StructResult
-	json.Unmarshal(data, &result2)
-
-	fmt.Println("Struct is:", result2)
-
-	fmt.Printf("userId = %v \n", result2.userId)
-	fmt.Printf("Id = %v \n", result2.id)
-	fmt.Printf("title = %v \n", result2.title)
-	fmt.Printf("completed = %v \n", result2.completed)
+	// fmt.Printf("userId = %v \n", result2.userId)
+	// fmt.Printf("Id = %v \n", result2.id)
+	// fmt.Printf("title = %v \n", result2.title)
+	// fmt.Printf("completed = %v \n", result2.completed)
+	mod2.Print2("https://jsonplaceholder.typicode.com/todos/1")
 
 }
