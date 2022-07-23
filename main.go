@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"myFirstGoApp/pkg/mod2"
+
 	// "io"
 	// "net/http"
 	// "os"
@@ -12,7 +14,12 @@ import (
 func main() {
 	fmt.Println("Hello, World!")
 
-	myFirstModule.Hi("ввв")
+	res := myFirstModule.Hi("ввв")
+	fmt.Println(res)
+
+	mod2.Hi("вывывы")
+
+	//logrus
 
 	//fmt.Println(testmod.Hi("roberto"))
 
