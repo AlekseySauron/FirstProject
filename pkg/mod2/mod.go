@@ -1,16 +1,17 @@
 package mod2
 
-import (
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
-	"net/http"
-)
-
 // func Hi(name string) {
 // 	fmt.Println(name)
 // }
 
+type Todo struct {
+	UserId    int    `example:"UserId"`
+	Id        int    `example:"Id"`
+	Title     string `example:"Title"`
+	Completed bool   `example:"Completed"`
+}
+
+/*
 func Print1(path string) {
 	resp, err := http.Get(path)
 	if err != nil {
@@ -25,12 +26,14 @@ func Print1(path string) {
 
 	json.NewDecoder(resp.Body).Decode(&result1)
 
-	fmt.Printf("userId = %v \n", result1["userId"])
-	fmt.Printf("Id = %v \n", result1["id"])
-	fmt.Printf("title = %v \n", result1["title"])
-	fmt.Printf("completed = %v \n", result1["completed"])
+	fmt.Printf("userId = %v \n", result1["UserId"])
+	fmt.Printf("Id = %v \n", result1["Id"])
+	fmt.Printf("title = %v \n", result1["Title"])
+	fmt.Printf("completed = %v \n", result1["Completed"])
 }
+*/
 
+/*
 func Print2(path string) {
 	resp, err := http.Get(path)
 	if err != nil {
@@ -42,21 +45,13 @@ func Print2(path string) {
 	fmt.Println("2 вариант")
 	data, err := ioutil.ReadAll(resp.Body)
 
-	type StructResult struct {
-		userId    int
-		id        int
-		title     string
-		completed bool
-	}
-
-	var result2 StructResult
+	var result2 Todo
 	json.Unmarshal(data, &result2)
 
-	//fmt.Println("Struct is:", result2)
-
-	fmt.Printf("userId = %v \n", result2.userId)
-	fmt.Printf("Id = %v \n", result2.id)
-	fmt.Printf("title = %v \n", result2.title)
-	fmt.Printf("completed = %v \n", result2.completed)
+	fmt.Printf("userId = %v \n", result2.UserId)
+	fmt.Printf("Id = %v \n", result2.Id)
+	fmt.Printf("title = %v \n", result2.Title)
+	fmt.Printf("completed = %v \n", result2.Completed)
 
 }
+*/
